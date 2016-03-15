@@ -745,25 +745,7 @@ public class HvcwApi
 		return getStorageInfo(handle, storageInfo);
 	}
 
-<<<<<<< HEAD
-=======
-	/**
-	 * ビデオフレーム取得
-	 * @param renderInfo レンダー情報
-	 * @param videoFrame ビデオフレーム
-	 * @return エラーコード
-	 */
-	public native int getVideoFrame(long renderInfo, VideoFrame videoFrame);
 
-    /**
-	 * 音声データ取得
-	 * @param renderInfo レンダー情報
-	 * @param soundData 音声データ
-	 */
-	public native int getSoundData(long renderInfo, long infoLen, byte[] soundData);
-
-
->>>>>>> 928b024d1bec35534cc881a9c7b78e871d53d658
 	/********************/
 	/*     OKAO API     */
 	/********************/

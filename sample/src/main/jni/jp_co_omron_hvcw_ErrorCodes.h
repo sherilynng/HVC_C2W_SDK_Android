@@ -35,6 +35,12 @@ extern "C" {
 #define jp_co_omron_hvcw_ErrorCodes_HVCW_PLURAL_FACES 31L
 #undef jp_co_omron_hvcw_ErrorCodes_HVCW_INVALID_RECEIVEDATA
 #define jp_co_omron_hvcw_ErrorCodes_HVCW_INVALID_RECEIVEDATA 40L
+#undef jp_co_omron_hvcw_ErrorCodes_HVCW_NOFILE
+#define jp_co_omron_hvcw_ErrorCodes_HVCW_NOFILE 50L
+#undef jp_co_omron_hvcw_ErrorCodes_HVCW_SD_NOT_INSERT
+#define jp_co_omron_hvcw_ErrorCodes_HVCW_SD_NOT_INSERT 61L
+#undef jp_co_omron_hvcw_ErrorCodes_HVCW_SD_READ
+#define jp_co_omron_hvcw_ErrorCodes_HVCW_SD_READ 62L
 #ifdef __cplusplus
 }
 #endif

@@ -98,7 +98,7 @@ HVCW_INT32 JNUSetResultDirection(JNIEnv *env, jobject objResultDirection, HVCW_O
 /*
  * pResultAge -> objResultAge
  */
-HVCW_INT32 JNUSetResultAge(JNIEnv *env, jobject objResultAge, HVCW_OKAO_RESULT_AEG *pResultAge);
+HVCW_INT32 JNUSetResultAge(JNIEnv *env, jobject objResultAge, HVCW_OKAO_RESULT_AGE *pResultAge);
 /*
  * pResultGender -> objResultGender
  */
@@ -124,9 +124,9 @@ HVCW_INT32 JNUSetResultRecognition(JNIEnv *env, jobject objResultRecognition, HV
  */
 HVCW_INT32 JNUSetResultFace(JNIEnv *env, jobject objResultFace, HVCW_OKAO_RESULT_FACE *pResultFace);
 /*
- * pResultBodys -> objResultBodys
+ * pResultBodies -> objResultBodies
  */
-HVCW_INT32 JNUSetResultBodys(JNIEnv *env, jobject objResultBodys, HVCW_OKAO_RESULT_BODYS *pResultBodys);
+HVCW_INT32 JNUSetResultBodies(JNIEnv *env, jobject objResultBodies, HVCW_OKAO_RESULT_BODIES *pResultBodies);
 /*
  * pResultHands -> objResultHands
  */

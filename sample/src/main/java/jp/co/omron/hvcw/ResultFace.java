@@ -23,7 +23,7 @@ public final class ResultFace
 	/** 顔向き推定結果 */
 	private ResultDirection   direction;
 	/** 年齢推定結果 */
-	private ResultAeg         age;
+	private ResultAge         age;
 	/** 性別推定結果 */
 	private ResultGender      gender;
 	/** 視線推定結果 */
@@ -44,7 +44,7 @@ public final class ResultFace
 		this.nSize       = 0;
 		this.nConfidence = 0;
 		this.direction   = new ResultDirection();
-		this.age         = new ResultAeg();
+		this.age         = new ResultAge();
 		this.gender      = new ResultGender();
 		this.gaze        = new ResultGaze();
 		this.blink       = new ResultBlink();
@@ -69,7 +69,7 @@ public final class ResultFace
 						int nSize,
 						int nConfidence,
 						ResultDirection direction,
-						ResultAeg age,
+						ResultAge age,
 						ResultGender gender,
 						ResultGaze gaze,
 						ResultBlink blink,
@@ -79,8 +79,8 @@ public final class ResultFace
 		this.ptCenter    = new Point(ptCenter.getX(), ptCenter.getY());
 		this.nSize       = nSize;
 		this.nConfidence = nConfidence;
-		this.direction   = new ResultDirection(direction.getLR(), direction.getUD(), direction.getRoll());
-		this.age         = new ResultAeg(age.getAge(), age.getConfidence());
+		this.direction   = new ResultDirection(direction.getLR(), direction.getUD(), direction.getRoll(), direction.getConfidence());
+		this.age         = new ResultAge(age.getAge(), age.getConfidence());
 		this.gender      = new ResultGender(gender.getGender(), gender.getConfidence());
 		this.gaze        = new ResultGaze(gaze.getLR(), gaze.getUD());
 		this.blink       = new ResultBlink(blink.getLeftEye(), blink.getRightEye());
@@ -128,7 +128,7 @@ public final class ResultFace
 	 * 年齢推定結果の取得
 	 * @return 年齢推定結果
 	 */
-	public ResultAeg getAge()
+	public ResultAge getAge()
 	{
 		return this.age;
 	}
@@ -211,16 +211,16 @@ public final class ResultFace
 	 */
 	public void setDirection(ResultDirection direction)
 	{
-		this.direction = new ResultDirection(direction.getLR(), direction.getUD(), direction.getRoll());
+		this.direction = new ResultDirection(direction.getLR(), direction.getUD(), direction.getRoll(), direction.getConfidence());
 	}
 
 	/**
 	 * 年齢推定結果の設定
 	 * @param age 年齢推定結果
 	 */
-	public void setAge(ResultAeg age)
+	public void setAge(ResultAge age)
 	{
-		this.age = new ResultAeg(age.getAge(), age.getConfidence());
+		this.age = new ResultAge(age.getAge(), age.getConfidence());
 	}
 
 	/**

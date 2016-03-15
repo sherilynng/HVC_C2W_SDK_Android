@@ -42,4 +42,10 @@ public interface ErrorCodes
 	public static final int HVCW_PLURAL_FACES			= 31;
 	/** 受信データが不正 */
 	public static final int HVCW_INVALID_RECEIVEDATA	= 40;
+	/** ファイルが存在しない */
+	public static final int HVCW_NOFILE					= 50;
+	/** SDカード未挿入 */
+	public static final int HVCW_SD_NOT_INSERT			= 61;
+	/** SDカード読み込みエラー */
+	public static final int HVCW_SD_READ				= 62;
 }

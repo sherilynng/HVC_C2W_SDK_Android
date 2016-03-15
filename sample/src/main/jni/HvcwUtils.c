@@ -908,6 +908,15 @@ HVCW_INT32 JNUSetResultDirection(JNIEnv *env, jobject objResultDirection, HVCW_O
 		return HVCW_INVALID_PARAM;
 	}
 	(*env)->SetIntField(env, objResultDirection, fid, (jint)pResultDirection->nRoll);
+	
+	fid = NULL;
+	fid = (*env)->GetFieldID(env, cls, "nConfidence", "I");
+	if(fid == NULL){
+		(*env)->DeleteLocalRef(env, cls);
+		cls = NULL;
+		return HVCW_INVALID_PARAM;
+	}
+	(*env)->SetIntField(env, objResultDirection, fid, (jint)pResultDirection->nConfidence);
 
 
 	(*env)->DeleteLocalRef(env, cls);
@@ -920,7 +929,7 @@ HVCW_INT32 JNUSetResultDirection(JNIEnv *env, jobject objResultDirection, HVCW_O
 /*
  * pResultAge -> objResultAge
  */
-HVCW_INT32 JNUSetResultAge(JNIEnv *env, jobject objResultAge, HVCW_OKAO_RESULT_AEG *pResultAge)
+HVCW_INT32 JNUSetResultAge(JNIEnv *env, jobject objResultAge, HVCW_OKAO_RESULT_AGE *pResultAge)
 {
 	jclass   cls = NULL;
 	jfieldID fid = NULL;
@@ -1187,7 +1196,7 @@ HVCW_INT32 JNUSetResultFace(JNIEnv *env, jobject objResultFace, HVCW_OKAO_RESULT
 	jfieldID   fid                  = NULL;
 	jobject    objPoint             = NULL;
 	jobject    objResultDirection   = NULL;
-	jobject    objResultAeg         = NULL;
+	jobject    objResultAge         = NULL;
 	jobject    objResultGender      = NULL;
 	jobject    objResultGaze        = NULL;
 	jobject    objResultBlink       = NULL;
@@ -1257,21 +1266,21 @@ HVCW_INT32 JNUSetResultFace(JNIEnv *env, jobject objResultFace, HVCW_OKAO_RESULT
 
 
 	fid = NULL;
-	fid = (*env)->GetFieldID(env, cls, "age", "Ljp/co/omron/hvcw/ResultAeg;");
+	fid = (*env)->GetFieldID(env, cls, "age", "Ljp/co/omron/hvcw/ResultAge;");
 	if(fid == NULL){
 		(*env)->DeleteLocalRef(env, cls);
 		cls = NULL;
 		return HVCW_INVALID_PARAM;
 	}
-	objResultAeg = (*env)->GetObjectField(env, objResultFace, fid);
+	objResultAge = (*env)->GetObjectField(env, objResultFace, fid);
 
-	nRet = JNUSetResultAge(env, objResultAeg, &(pResultFace->age));
+	nRet = JNUSetResultAge(env, objResultAge, &(pResultFace->age));
 	if(nRet != HVCW_SUCCESS){
 		(*env)->DeleteLocalRef(env, cls);
 		cls = NULL;
 		return nRet;
 	}
-	(*env)->SetObjectField(env, objResultFace, fid, objResultAeg);
+	(*env)->SetObjectField(env, objResultFace, fid, objResultAge);
 
 
 	fid = NULL;
@@ -1372,9 +1381,9 @@ HVCW_INT32 JNUSetResultFace(JNIEnv *env, jobject objResultFace, HVCW_OKAO_RESULT
 
 
 /*
- * pResultBodys -> objResultBodys
+ * pResultBodies -> objResultBodies
  */
-HVCW_INT32 JNUSetResultBodys(JNIEnv *env, jobject objResultBodys, HVCW_OKAO_RESULT_BODYS *pResultBodys)
+HVCW_INT32 JNUSetResultBodies(JNIEnv *env, jobject objResultBodies, HVCW_OKAO_RESULT_BODIES *pResultBodies)
 {
 	jclass       cls          = NULL;
 	jfieldID     fid          = NULL;
@@ -1383,7 +1392,7 @@ HVCW_INT32 JNUSetResultBodys(JNIEnv *env, jobject objResultBodys, HVCW_OKAO_RESU
 	int          nLength      = 0;
 	int          i            = 0;
 
-	cls = (*env)->GetObjectClass(env, objResultBodys);
+	cls = (*env)->GetObjectClass(env, objResultBodies);
 	if(cls == NULL){
 		return HVCW_INVALID_PARAM;
 	}
@@ -1396,7 +1405,7 @@ HVCW_INT32 JNUSetResultBodys(JNIEnv *env, jobject objResultBodys, HVCW_OKAO_RESU
 		cls = NULL;
 		return HVCW_INVALID_PARAM;
 	}
-	(*env)->SetIntField(env, objResultBodys, fid, (jint)pResultBodys->nCount);
+	(*env)->SetIntField(env, objResultBodies, fid, (jint)pResultBodies->nCount);
 
 
 	fid = NULL;
@@ -1406,14 +1415,14 @@ HVCW_INT32 JNUSetResultBodys(JNIEnv *env, jobject objResultBodys, HVCW_OKAO_RESU
 		cls = NULL;
 		return HVCW_INVALID_PARAM;
 	}
-	objArrResult = (*env)->GetObjectField(env, objResultBodys, fid);
+	objArrResult = (*env)->GetObjectField(env, objResultBodies, fid);
 
 	nLength = (*env)->GetArrayLength(env, objArrResult);
 
 	for(i = 0; i<nLength; i++){
 		objResult = (*env)->GetObjectArrayElement(env, objArrResult, i);
 
-		JNUSetResultDetection(env, objResult, &(pResultBodys->body[i]));
+		JNUSetResultDetection(env, objResult, &(pResultBodies->body[i]));
 
 		(*env)->SetObjectArrayElement(env, objArrResult, i, objResult);
 		/* ローカル参照は512まで */
@@ -1609,12 +1618,12 @@ HVCW_INT32 JNUSetResultFaces(JNIEnv *env, jobject objResultFaces, HVCW_OKAO_RESU
 HVCW_INT32 JNUSetOkaoResult(JNIEnv *env, jobject objOkaoResult, HVCW_OKAO_RESULT *pOkaoResult)
 {
 	HVCW_INT32 nRet;
-	jclass cls             = NULL;
-	jfieldID fid           = NULL;
-	jobject objResultBodys = NULL;
-	jobject objResultHands = NULL;
-	jobject objResultPets  = NULL;
-	jobject objResultFaces = NULL;
+	jclass cls              = NULL;
+	jfieldID fid            = NULL;
+	jobject objResultBodies = NULL;
+	jobject objResultHands  = NULL;
+	jobject objResultPets   = NULL;
+	jobject objResultFaces  = NULL;
 
 	cls = (*env)->GetObjectClass(env, objOkaoResult);
 	if(cls == NULL){
@@ -1622,21 +1631,21 @@ HVCW_INT32 JNUSetOkaoResult(JNIEnv *env, jobject objOkaoResult, HVCW_OKAO_RESULT
 	}
 
 
-	fid = (*env)->GetFieldID(env, cls, "bodys", "Ljp/co/omron/hvcw/ResultBodys;");
+	fid = (*env)->GetFieldID(env, cls, "bodies", "Ljp/co/omron/hvcw/ResultBodies;");
 	if(fid == NULL){
 		(*env)->DeleteLocalRef(env, cls);
 		cls = NULL;
 		return HVCW_INVALID_PARAM;
 	}
-	objResultBodys = (*env)->GetObjectField(env, objOkaoResult, fid);
+	objResultBodies = (*env)->GetObjectField(env, objOkaoResult, fid);
 
-	nRet = JNUSetResultBodys(env, objResultBodys, &(pOkaoResult->bodys));
+	nRet = JNUSetResultBodies(env, objResultBodies, &(pOkaoResult->bodies));
 	if(nRet != HVCW_SUCCESS){
 		(*env)->DeleteLocalRef(env, cls);
 		cls = NULL;
 		return nRet;
 	}
-	(*env)->SetObjectField(env, objOkaoResult, fid, objResultBodys);
+	(*env)->SetObjectField(env, objOkaoResult, fid, objResultBodies);
 
 
 	fid = (*env)->GetFieldID(env, cls, "hands", "Ljp/co/omron/hvcw/ResultHands;");

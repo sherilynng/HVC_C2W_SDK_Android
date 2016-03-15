@@ -15,7 +15,7 @@ package jp.co.omron.hvcw;
 public final class OkaoResult
 {
 	/** 人体検出結果 */
-	private ResultBodys bodys;
+	private ResultBodies bodies;
 	/** 手検出結果 */
 	private ResultHands hands;
 	/** ペット検出結果 */
@@ -28,7 +28,7 @@ public final class OkaoResult
 	 */
 	public OkaoResult()
 	{
-		this.bodys = new ResultBodys();
+		this.bodies = new ResultBodies();
 		this.hands = new ResultHands();
 		this.pets  = new ResultPets();
 		this.faces = new ResultFaces();
@@ -36,14 +36,14 @@ public final class OkaoResult
 
 	/**
 	 * コンストラクタ
-	 * @param bodys 人体検出結果
+	 * @param bodies 人体検出結果
 	 * @param hands 手検出結果
 	 * @param pets ペット検出結果
 	 * @param faces 顔検出結果
 	 */
-	public OkaoResult(ResultBodys bodys, ResultHands hands, ResultPets pets, ResultFaces faces)
+	public OkaoResult(ResultBodies bodies, ResultHands hands, ResultPets pets, ResultFaces faces)
 	{
-		this.bodys = new ResultBodys(bodys.getCount(), bodys.getResultDetection());
+		this.bodies = new ResultBodies(bodies.getCount(), bodies.getResultDetection());
 		this.hands = new ResultHands(hands.getCount(), hands.getResultDetection());
 		this.pets  = new ResultPets(pets.getCount(), pets.getResultPet());
 		this.faces = new ResultFaces(faces.getCount(), faces.getResultFace());
@@ -53,9 +53,9 @@ public final class OkaoResult
 	 * 人体検出結果の取得
 	 * @return 人体検出結果
 	 */
-	public ResultBodys getResultBodys()
+	public ResultBodies getResultBodies()
 	{
-		return this.bodys;
+		return this.bodies;
 	}
 
 	/**
@@ -87,11 +87,11 @@ public final class OkaoResult
 
 	/**
 	 * 人体検出結果の設定
-	 * @param bodys 人体検出結果
+	 * @param bodies 人体検出結果
 	 */
-	public void setResultBodys(ResultBodys bodys)
+	public void setResultBodies(ResultBodies bodies)
 	{
-		this.bodys = new ResultBodys(bodys.getCount(), bodys.getResultDetection());
+		this.bodies = new ResultBodies(bodies.getCount(), bodies.getResultDetection());
 	}
 
 	/**
