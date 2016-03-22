@@ -1,55 +1,51 @@
-# HVC-C2W Android-SDK by OMRON
+﻿# HVC-C2W Android-SDK by OMRON
 
-### 1. SDK内容
-  Android端末からオムロン製HVC-C2Wを制御するためのSDKを提供します。
-  本SDKはファームウェアのバージョンV04.02.01以降対応しております。
-  ファームウェアのバージョンが古い場合はアップデートしてください。
+### 1. SDK contents
+  This SDK is used to control the OMRON HVC-C2W from an Android device.
+  This SDK supports firmware version V04.02.01 or later.
+  Update the firmware if it is outdated.  
 
-### 2. ご利用方法
-  2.1 同梱の「HVC-C2W SDK使用許諾契約」をお読み頂き、
-      同意いただける場合のみ本SDKをご利用頂けます。
+### 2. Usage method
+  2.1 Use this SDK only after reading AND agreeing to the included "HVC-C2W SDK License Agreement".
 
-  2.2 本SDKをご利用頂くにはSensingEggProjectメンバーサイトへの　
-      メンバー登録（無料）が必要です。
-      http://plus-sensing.omron.co.jp/member/sdk/
+  2.2 Registering to the SensingEggProject member's site is required in order to use this SDK.
+      http://plus-sensing.omron.co.jp/member/sdk/ (free of charge)
 
-  2.3 WebAPIを使用してサーバにアクセスするためにはApiKey、アプリからカメラ
-      を使用するにはアプリ固有のAppIDが必要となります。
-      どちらもSensingEggProjcetメンバーサイト内の「APIキー申請フォーム」より
-      ご申請下さい。
-      尚、AppIDはHVCW_SetAppID関数にてカメラにご設定下さい。
+  2.3 An App API key is required in order to access the server and use the Web API, while a unique App ID is required in order to use the camera from the app.
+      Apply for them through the "API ley application form" on the SensingEggProject member's site.
+      Make sure to set the obtained App ID in the camera through the HVCW_SetAppID function.
 
 
-### 3. ディレクトリ構成
+### 3. Directory Structure
       doc/
-         HVC-C2W_WebAPI仕様書      HVC-C2Wを使用する為のクラウドサーバWebAPI仕様書
-         HVC-C2W_API仕様書         HVC-C2Wを制御する為のAPI仕様書
-         HVC-C2W開発者ガイド       HVC-C2Wの開発者ガイド
-      libs/                        HVC-C2W SDKバイナリファイル本体
+         HVC-C2W_WebAPISpecifications   Cloud server Web API specifications to use HVC-C2W
+         HVC-C2W_APISpecifications      API specifications to control HVC-C2W
+         HVC-C2WDeveloperGuide          HVC-C2W developer guide
+      libs/                             HVC-C2W SDK binary main file
       include/
-         HvcwSdkAPI.h              SDKヘッダファイル
-         HvcwTypedef.h             TypeDef定義
-         HvcwCommonDef.h           エラーコード定義
+         HvcwSdkAPI.h                   SDK header file
+         HvcwTypedef.h                  TypeDef definitions
+         HvcwCommonDef.h                Error code definitions
 
       sample/
-         src/                      JNIサンプル
+         src/                           JNI sample
             main/
-               java/               javaソースコード
-               jni/                JNIソースコード
-         libs/
+               java/                    java source code
+               jni/                     JNI source code
+         libs/ 
             jar/
-               HVCW.jar            jarファイル
+               HVCW.jar                 jar file
 
          demo/
-            base/                  基本サンプルデモプロジェクト(Android Studio)
+            base/                       Basic sample demo project (Android Studio)
 
 
-###[ご使用にあたって]
-* 本ソースコード、バイナリファイルおよびドキュメントの著作権はオムロンに帰属します。
-* 本ソースコード及びバイナリファイルは動作を保証するものではありません。
+###[Notes on Usage]
+* This source code, binary files and documentation are copyrighted properties of OMRON Corporation.
+* Proper operation of this source code or of the binary files is not guaranteed.
 
-### 謝辞
-  本ソフトウェアには、以下フリーウェアソフトウェアが含まれています。
+### Acknowledgment
+  The following freeware is included in this Software.
 
 *****************************************************
 OpenH264   http://www.openh264.org
@@ -181,5 +177,5 @@ copyright holder.
 ========================================================================
 
 ----
-オムロン株式会社  
-Copyright(C) 2015 OMRON Corporation, All Rights Reserved.
+OMRON Corporation 
+Copyright(C) 2016 OMRON Corporation, All Rights Reserved.
